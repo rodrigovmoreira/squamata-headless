@@ -5,7 +5,7 @@ O seu objetivo aqui é criar a "cabeça" do sistema (O Headless CMS) para que o 
 
 ✅ Conectar ao Cofre: Você vai apontar o arquivo .env do Payload para o seu banco de dados MongoDB que roda blindado no Optiplex 3010.
 
-Plugar o MinIO: Você vai instalar o plugin oficial do S3 no Payload e configurá-lo com as chaves do seu MinIO (que já está configurado no túnel do Cloudflare). Assim, quando o cliente arrastar uma foto no painel do Payload, a foto vai direto pro seu HD de 1TB.
+✅ Plugar o MinIO: Você vai instalar o plugin oficial do S3 no Payload e configurá-lo com as chaves do seu MinIO (que já está configurado no túnel do Cloudflare). Assim, quando o cliente arrastar uma foto no painel do Payload, a foto vai direto pro seu HD de 1TB.
 
 Modelar os Dados: No código do Payload, você vai criar uma Collection (Tabela) chamada Produtos. Você vai definir via código os campos: Nome, Descricao, Preco, Imagem, e o campo opcional urlMercadoLivre.
 
