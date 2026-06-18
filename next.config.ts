@@ -14,6 +14,11 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+
+  devIndicators: {
+    position: 'bottom-right',
+  },
+
   webpack: (webpackConfig) => {
     webpackConfig.resolve.extensionAlias = {
       '.cjs': ['.cts', '.cjs'],

@@ -20,7 +20,7 @@ export const Users: CollectionConfig = {
     create: ({ req: { user } }) => user?.role === 'superadmin',
     delete: ({ req: { user } }) => user?.role === 'superadmin',
   },
-  fields: [
+fields: [
     {
       name: 'role',
       type: 'select',
@@ -30,6 +30,10 @@ export const Users: CollectionConfig = {
       ],
       defaultValue: 'tenant',
       required: true,
+      // NOVA REGRA: Apenas Super Admins podem alterar o valor deste campo
+      access: {
+        update: ({ req: { user } }) => user?.role === 'superadmin',
+      },
     },
     {
       name: 'tenant',
@@ -38,7 +42,11 @@ export const Users: CollectionConfig = {
       label: 'Empresa vinculada',
       required: false,
       admin: {
-        condition: (data) => data?.role === 'tenant', // Esconde se você for superadmin
+        condition: (data) => data?.role === 'tenant', 
+      },
+      // NOVA REGRA: Impede que um lojista mude a própria empresa
+      access: {
+        update: ({ req: { user } }) => user?.role === 'superadmin',
       },
     },
   ],
