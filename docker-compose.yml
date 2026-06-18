@@ -4,7 +4,7 @@ services:
   payload:
     image: node:20-alpine
     ports:
-      - '3000:3000'
+      - '3006:3000'
     volumes:
       - .:/home/node/app
       - node_modules:/home/node/app/node_modules
@@ -15,6 +15,7 @@ services:
       # - postgres
     env_file:
       - .env
+    restart: unless-stopped  
 
   # Ensure your DATABASE_URL uses 'mongo' as the hostname ie. mongodb://mongo/my-db-name
   mongo:
