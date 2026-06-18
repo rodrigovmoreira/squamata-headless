@@ -7,7 +7,7 @@ O seu objetivo aqui é criar a "cabeça" do sistema (O Headless CMS) para que o 
 
 ✅ Plugar o MinIO: Você vai instalar o plugin oficial do S3 no Payload e configurá-lo com as chaves do seu MinIO (que já está configurado no túnel do Cloudflare). Assim, quando o cliente arrastar uma foto no painel do Payload, a foto vai direto pro seu HD de 1TB.
 
-Modelar os Dados: No código do Payload, você vai criar uma Collection (Tabela) chamada Produtos. Você vai definir via código os campos: Nome, Descricao, Preco, Imagem, e o campo opcional urlMercadoLivre.
+✅ Modelar os Dados: No código do Payload, você vai criar uma Collection (Tabela) chamada Produtos. Você vai definir via código os campos: Nome, Descricao, Preco, Imagem, e o campo opcional urlMercadoLivre.
 
 O que o cliente faz aqui: Ele recebe de você um login e senha. Ele entra no painel, vê uma interface bonita e começa a cadastrar as capas e cases dele.
 

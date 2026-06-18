@@ -13,7 +13,7 @@ export const Media: CollectionConfig = {
     update: ({ req: { user } }) => user?.role === 'superadmin',
     delete: ({ req: { user } }) => user?.role === 'superadmin',
     // Permite que o lojista faça upload de novas imagens
-    create: ({ req: { user } }) => !!user, 
+    create: ({ req: { user } }) => !!user,
   },
   fields: [
     {
@@ -35,12 +35,12 @@ export const Media: CollectionConfig = {
   hooks: {
     beforeChange: [
       ({ req, data, operation }) => {
-        // O PULO DO GATO: Se for um lojista fazendo upload, 
-        // vinculamos a imagem à empresa dele automaticamente!
         if (operation === 'create' && req.user && req.user.role === 'tenant') {
-          data.tenant = req.user.tenant
+          // Pega apenas o ID, independente se o Payload trouxe o objeto inteiro ou só a string
+          const tenantId = typeof req.user.tenant === 'object' ? req.user.tenant?.id : req.user.tenant;
+          data.tenant = tenantId;
         }
-        return data
+        return data;
       },
     ],
   },

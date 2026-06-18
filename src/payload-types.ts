@@ -70,6 +70,7 @@ export interface Config {
     users: User;
     media: Media;
     tenants: Tenant;
+    produtos: Produto;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -80,6 +81,7 @@ export interface Config {
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     tenants: TenantsSelect<false> | TenantsSelect<true>;
+    produtos: ProdutosSelect<false> | ProdutosSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -180,6 +182,24 @@ export interface Media {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "produtos".
+ */
+export interface Produto {
+  id: string;
+  nome: string;
+  descricao?: string | null;
+  preco: number;
+  imagem: string | Media;
+  /**
+   * Se preenchido, o botão do site redirecionará o cliente para o Mercado Livre.
+   */
+  urlMercadoLivre?: string | null;
+  tenant?: (string | null) | Tenant;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
 export interface PayloadKv {
@@ -213,6 +233,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'tenants';
         value: string | Tenant;
+      } | null)
+    | ({
+        relationTo: 'produtos';
+        value: string | Produto;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -307,6 +331,20 @@ export interface MediaSelect<T extends boolean = true> {
 export interface TenantsSelect<T extends boolean = true> {
   name?: T;
   domain?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "produtos_select".
+ */
+export interface ProdutosSelect<T extends boolean = true> {
+  nome?: T;
+  descricao?: T;
+  preco?: T;
+  imagem?: T;
+  urlMercadoLivre?: T;
+  tenant?: T;
   updatedAt?: T;
   createdAt?: T;
 }
