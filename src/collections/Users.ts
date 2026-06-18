@@ -6,8 +6,40 @@ export const Users: CollectionConfig = {
     useAsTitle: 'email',
   },
   auth: true,
+  access: {
+    read: ({ req: { user } }) => {
+      if (!user) return false
+      if (user.role === 'superadmin') return true
+      return { id: { equals: user.id } }
+    },
+    update: ({ req: { user } }) => {
+      if (!user) return false
+      if (user.role === 'superadmin') return true
+      return { id: { equals: user.id } }
+    },
+    create: ({ req: { user } }) => user?.role === 'superadmin',
+    delete: ({ req: { user } }) => user?.role === 'superadmin',
+  },
   fields: [
-    // Email added by default
-    // Add more fields as needed
+    {
+      name: 'role',
+      type: 'select',
+      options: [
+        { label: 'Super Admin (Você)', value: 'superadmin' },
+        { label: 'Lojista (Cliente)', value: 'tenant' },
+      ],
+      defaultValue: 'tenant',
+      required: true,
+    },
+    {
+      name: 'tenant',
+      type: 'relationship',
+      relationTo: 'tenants',
+      label: 'Empresa vinculada',
+      required: false,
+      admin: {
+        condition: (data) => data?.role === 'tenant', // Esconde se você for superadmin
+      },
+    },
   ],
 }
