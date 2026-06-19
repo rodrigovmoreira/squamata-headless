@@ -345,13 +345,16 @@ src/
 ├── collections/
 │   ├── Posts.ts
 │   ├── Media.ts
-│   └── Users.ts
+│   ├── Users.ts
+│   ├── Tenants.ts
+|   └── Produtos.ts
 ├── globals/
 │   └── Header.ts
 ├── components/
 │   └── CustomField.tsx
 ├── hooks/
 │   └── slugify.ts
+├── payload-types.ts
 └── payload.config.ts
 ```
 
